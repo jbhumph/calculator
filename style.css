@@ -1,0 +1,13 @@
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+}
+
+.header {
+    font-size: small;
+}
+
+h1 {
+    text-align: center;
+}
