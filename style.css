@@ -1,24 +1,37 @@
 body {
     min-height: 100vh;
-    background-color: #E0E1DD;
-    font-family: "roboto", sans-serif;
-    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    flex: auto;
+    margin: 0px;
+    font-family: "roboto", sans-serif;
 }
 
-.header {
+.header, .footer {
     display: flex;
+    flex-basis: auto;
+    justify-content: center;
+    padding: 8px;
     font-size: small;
     background-color: #415A77;
     color: #E0E1DD;
 }
 
+.headTitle, .foot {
+    display: flex;
+    color: #E0E1DD;
+    font-size: 18px;
+    flex-basis: 900px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
 .main {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 h1 {
