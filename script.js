@@ -20,6 +20,8 @@ const minus = document.querySelector('#minus');
 const multiply = document.querySelector('#multiply');
 const divide = document.querySelector('#div');
 
+const decimal = document.querySelector('#decimal');
+const negative = document.querySelector('#negative');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
 
@@ -96,9 +98,12 @@ equals.addEventListener('click', () => {
         secondNum = value;
         firstNum = operate(firstNum, secondNum, operator)
     }
-    displayValue = [];
     display.innerText = `${constrain(firstNum)}`;
     operator = undefined;
+    value = firstNum;
+    let a = value.toString();
+    displayValue = a.split("");
+    firstNum = undefined;
 })
 
 clear.addEventListener('click', () => {
@@ -109,6 +114,19 @@ clear.addEventListener('click', () => {
     operator = undefined;
     value = undefined;
 });
+negative.addEventListener('click', () => {
+    if (value !== undefined) {
+        value *= -1;
+        display.innerText = `${constrain(value)}`;
+        let a = value.toString();
+        displayValue = a.split('');
+    }
+})
+decimal.addEventListener('click', () => {
+    displayValue.push('.');
+    value = parseDisplay(displayValue);
+    display.innerText = `${constrain(value)}`;
+})
 
 
 function parseDisplay(number) {

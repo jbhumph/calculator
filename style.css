@@ -74,7 +74,7 @@ h1 {
     flex-direction: column;
     width: 100%;
     padding-top: 10px;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 
 }
 
@@ -100,12 +100,22 @@ button:hover {
     color: hotpink;
 }
 
-#clear, #equals {
+#equals {
+    width: 240px;
+    background-color: #415A77;
+    color: #E0E1DD;
+}
+
+#equals:hover {
+    color: hotpink;
+}
+
+#decimal, #negative {
     background-color: #778DA9;
     color: #E0E1DD;
 }
 
-#clear:hover, #equals:hover {
+#decimal:hover, #negative:hover {
     background-color: #415A77;
     color: hotpink;
 }
