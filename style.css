@@ -1,11 +1,55 @@
 body {
     min-height: 100vh;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px auto 80px;
     flex-direction: column;
     justify-content: space-between;
     flex: auto;
     margin: 0px;
     font-family: "roboto", sans-serif;
+    background-color: var(--color_E);
+
+}
+
+.theme_A {
+    --color-A: #0D1B2A;
+    --color-B: #1B263B;
+    --color-C: #415A77;
+    --color-D: #778DA9;
+    --color-E: #E0E1DD;
+    --g1: #0D1B2A;
+    --g2: #d0f4de;
+}
+
+.theme_B {
+    --color-A: #283618;
+    --color-B: #606c38;
+    --color-C: #bc6c25;
+    --color-D: #dda15e;
+    --color-E: #fefae0;
+    --g1: #ff99c8;
+    --g2: #d0f4de;
+}
+
+.theme_C {
+    --color-A: #219ebc;
+    --color-B: #8ecae6;
+    --color-C: #fb8500;
+    --color-D: #ffb703;
+    --color-E: #023047;
+    --g1: #ff99c8;
+    --g2: #d0f4de;
+}
+
+.theme_D {
+    --color-A: #fcf6bd;
+    --color-B: #d0f4de;
+    --color-C: #a9def9;
+    --color-D: #e4c1f9;
+    --color-E: #ff99c8;
+    --g1: #ff99c8;
+    --g2: #d0f4de;
 }
 
 .header, .footer {
@@ -14,15 +58,28 @@ body {
     justify-content: center;
     padding: 8px;
     font-size: small;
-    background-color: #415A77;
-    color: #E0E1DD;
+    background-color: var(--color-C);
+    color: var(--color-E);
 }
 
 .headTitle, .foot {
     display: flex;
-    color: #E0E1DD;
+    color: var(--color-E);
     font-size: 18px;
     flex-basis: 900px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.headTitle {
+    font-size: xx-large;
+    font-weight: bold;
+    color: var(--color-E);
+}
+
+.icons {
+    display: flex;
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -31,6 +88,8 @@ body {
 .main {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    background-color: var(--color-E);
 }
 
 .calco {
@@ -41,7 +100,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #0D1B2A;
+    color: var(--color-A);
 }
 
 .calcMain {
@@ -52,8 +111,8 @@ h1 {
     align-items: center;
     border-style: solid;
     border-width: 10px;
-    border-color: #778DA9;
-    background-color: #1B263B;
+    border-color: var(--color-D);
+    background-color: var(--color-B);
     border-radius: 20px;
     padding: 10px;
 }
@@ -70,7 +129,7 @@ h1 {
     border-style: solid;
     border-width: 5px;
     border-radius: 15px;
-    border-color: #1B263B;
+    border-color: var(--color-B);
 
 }
 
@@ -95,7 +154,7 @@ button {
     width: 80px;
     border-style: solid;
     border-width: 5px;
-    border-color: #1B263B;
+    border-color: var(--color-B);
     border-radius: 15px;
     font-size: large;
     font-weight: bold;
@@ -107,8 +166,8 @@ button:hover {
 
 #equals {
     width: 240px;
-    background-color: #415A77;
-    color: #E0E1DD;
+    background-color: var(--color-C);
+    color: var(--color-E);
 }
 
 #equals:hover {
@@ -116,22 +175,22 @@ button:hover {
 }
 
 #decimal, #negative {
-    background-color: #778DA9;
-    color: #E0E1DD;
+    background-color: var(--color-D);
+    color: var(--color-E);
 }
 
 #decimal:hover, #negative:hover {
-    background-color: #415A77;
+    background-color: var(--color-C);
     color: hotpink;
 }
 
 #plus, #minus, #multiply, #div {
-    background-color: #415A77;
-    color: #E0E1DD;
+    background-color: var(--color-C);
+    color: var(--color-E);
 }
 
 #plus:hover, #minus:hover, #multiply:hover, #div:hover {
-    background-color: #1B263B;
+    background-color: var(--color-B);
     color: hotpink;
 }
 
@@ -145,9 +204,42 @@ button:hover {
     overflow: scroll;
     border-style: solid;
     border-width: 10px;
-    border-color: #778DA9;
-    background-color: #1B263B;
-    color: #E0E1DD;
+    border-color: var(--color-D);
+    background-color: var(--color-B);
+    color: var(--color-E);
     border-radius: 20px;
     padding: 10px;
+}
+
+.choice {
+    width: 30px;
+    height: 30px;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+.choice_A {
+    border-color: #E0E1DD;
+    background-image: linear-gradient(to bottom right, #0D1B2A, #778DA9);
+}
+
+.choice_B {
+    border-color: #fefae0;
+    background-image: linear-gradient(to bottom right, #283618, #dda15e);
+}
+
+.choice_C {
+    border-color: #8ecae6;
+    background-image: linear-gradient(to bottom right, #ffb703, #8ecae6);
+}
+
+.choice_D {
+    border-color: #fcf6bd;
+    background-image: linear-gradient(to bottom right, #e4c1f9, #d0f4de);
+}
+
+.choice:hover {
+    border-color: hotpink;
 }

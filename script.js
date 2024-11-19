@@ -257,3 +257,24 @@ function concatenate(string) {
     }
     return newString;
 }
+
+// color picker
+const body = document.querySelector("body");
+const choice_A = document.querySelector(".choice_A");
+const choice_B = document.querySelector(".choice_B");
+const choice_C = document.querySelector(".choice_C");
+const choice_D = document.querySelector(".choice_D");
+
+
+choice_A.addEventListener("click", () => {
+    body.className = "theme_A"
+})
+choice_B.addEventListener("click", () => {
+    body.className = "theme_B"
+})
+choice_C.addEventListener("click", () => {
+    body.className = "theme_C"
+})
+choice_D.addEventListener("click", () => {
+    body.className = "theme_D"
+})
