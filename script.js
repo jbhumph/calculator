@@ -3,6 +3,7 @@ let displayValue = [];
 let value;
 
 const display = document.querySelector('.display');
+const printer = document.querySelector('.printer');
 
 const one = document.querySelector("#one");
 const two = document.querySelector('#two');
@@ -24,6 +25,8 @@ const decimal = document.querySelector('#decimal');
 const negative = document.querySelector('#negative');
 const equals = document.querySelector('#equals');
 const clear = document.querySelector('#clear');
+
+let printArr = ["&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", "&nbsp;", ]
 
 one.addEventListener('click', () => {
     displayValue.push(1);
@@ -77,16 +80,16 @@ zero.addEventListener('click', () => {
 })
 
 plus.addEventListener('click', () => {
-    click("add");
+    click("+");
 });
 minus.addEventListener('click', () => {
-    click("subtract");
+    click("-");
 });
 multiply.addEventListener('click', () => {
-    click("multiply")
+    click("*")
 });
 divide.addEventListener('click', () => {
-    click("divide");
+    click("/");
 })
 
 equals.addEventListener('click', () => {
@@ -97,6 +100,8 @@ equals.addEventListener('click', () => {
         }
         secondNum = value;
         firstNum = operate(firstNum, secondNum, operator)
+        drawPrinter(secondNum, firstNum, operator);
+        drawPrinter(0, firstNum, "=")
     }
     display.innerText = `${constrain(firstNum)}`;
     operator = undefined;
@@ -113,6 +118,7 @@ clear.addEventListener('click', () => {
     secondNum = undefined;
     operator = undefined;
     value = undefined;
+    drawPrinter(0, 0, "clear");
 });
 negative.addEventListener('click', () => {
     if (value !== undefined) {
@@ -121,6 +127,7 @@ negative.addEventListener('click', () => {
         let a = value.toString();
         displayValue = a.split('');
     }
+    drawPrinter(0, value, "neg");
 })
 decimal.addEventListener('click', () => {
     displayValue.push('.');
@@ -142,13 +149,15 @@ function constrain(number) {
 function click (operators) {
     if (firstNum === undefined) {
         firstNum = value;
+        drawPrinter(firstNum, 0, "none")
     } else if (operator !== undefined) {
         if (operator === "divide" && value === 0) {
             display.innerText = "improper denominator";
             return;
         }
         secondNum = value;
-        firstNum = operate(firstNum, secondNum, operator)
+        firstNum = operate(firstNum, secondNum, operator);
+        drawPrinter(secondNum, firstNum, operator);
         value = firstNum;
     }
     displayValue = [];
@@ -157,13 +166,13 @@ function click (operators) {
 }
 
 function operate(x, y, op) {
-    if (op === "add") {
+    if (op === "+") {
         return add(x, y);
-    } else if(op === "subtract") {
+    } else if(op === "-") {
         return subtract(x, y);
-    } else if(op === "multiply") {
+    } else if(op === "*") {
         return multiplies(x, y);
-    } else if(op === "divide") {
+    } else if(op === "/") {
         return divides(x, y);
     }
 }
@@ -184,4 +193,67 @@ function multiplies(x, y) {
 
 function divides(x, y) {
     return x / y;
+}
+
+function drawPrinter(x, y, op) {
+    const newLine = document.createElement("div");
+    let newArr = [...printArr];
+    if (op === "clear") {
+        newLine.innerText = "------------clear------------";
+        printer.appendChild(newLine);
+        return;
+    }
+
+    x = String(x).substring(0, 7);
+    y = String(y).substring(0, 7);
+    for (let i = 0; i < String(x).length; i++) {
+        newArr[i + 3] = x[i];
+    }
+
+    if (op === "test") {
+        newLine.innerHTML = concatenate(newArr);
+    } else if (op === "none") {
+        newArr[18] = "=";
+        for (let i = 0; i < String(x).length; i++) {
+            newArr[i + 20] = x[i];
+        }
+        newLine.innerHTML = concatenate(newArr);
+    } else if (op === "+" || op === "-" || op === "*" || op === "/") {
+        newArr[1] = op;
+        newArr[18] = "=";
+        for (let i = 0; i < String(y).length; i++) {
+            newArr[i + 20] = y[i];
+        }
+        newLine.innerHTML = concatenate(newArr);
+    } else if (op === "=") {
+        newArr[1] = "=";
+        newArr[3] = "&nbsp;"
+        newArr[18] = "=";
+        for (let i = 0; i < String(y).length; i++) {
+            newArr[i + 20] = y[i];
+        }
+        let newLine_b = document.createElement("div");
+        newLine_b.innerHTML = "&nbsp;";
+        printer.appendChild(newLine_b);
+        newLine.innerHTML = concatenate(newArr);
+    } else if (op === "neg") {
+        newArr[1] = "n"
+        newArr[2] = "e"
+        newArr[3] = "g"
+        newArr[18] = "=";
+        for (let i = 0; i < String(y).length; i++) {
+            newArr[i + 20] = y[i];
+        }
+        newLine.innerHTML = concatenate(newArr);
+    }
+    printer.appendChild(newLine);
+}
+
+function concatenate(string) {
+    // concatenates string in a way that concat() or flat() wouldn't
+    let newString = "";
+    for (let i = 0; i < string.length; i++) {
+        newString += string[i];
+    }
+    return newString;
 }
